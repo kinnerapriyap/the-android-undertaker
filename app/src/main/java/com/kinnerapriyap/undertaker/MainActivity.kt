@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.kinnerapriyap.undertaker.ui.composables.DottyCirclesAnimationScreen
 import com.kinnerapriyap.undertaker.ui.composables.HomeScreen
-import com.kinnerapriyap.undertaker.ui.theme.TheandroidundertakerTheme
+import com.kinnerapriyap.undertaker.ui.theme.TheAndroidUndertakerTheme
 import com.roudikk.guia.containers.NavContainer
 import com.roudikk.guia.core.NavigatorConfigBuilder
 import com.roudikk.guia.core.rememberNavigator
@@ -14,7 +14,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            TheandroidundertakerTheme {
+            TheAndroidUndertakerTheme(darkTheme = false) {
                 val navigator = rememberNavigator(initialKey = HomeKey) { handleNavigation() }
                 navigator.NavContainer()
             }
