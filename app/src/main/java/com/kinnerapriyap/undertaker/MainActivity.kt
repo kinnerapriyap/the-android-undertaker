@@ -9,6 +9,7 @@ import com.kinnerapriyap.undertaker.ui.theme.TheAndroidUndertakerTheme
 import com.roudikk.guia.containers.NavContainer
 import com.roudikk.guia.core.NavigatorConfigBuilder
 import com.roudikk.guia.core.rememberNavigator
+import kotlinx.collections.immutable.toImmutableList
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,6 +24,6 @@ class MainActivity : ComponentActivity() {
 }
 
 private fun NavigatorConfigBuilder.handleNavigation() {
-    screen<HomeKey> { HomeScreen(undertakes = undertakes) }
+    screen<HomeKey> { HomeScreen(undertakes = undertakes.toImmutableList()) }
     screen<DottyCirclesAnimationKey> { DottyCirclesAnimationScreen() }
 }

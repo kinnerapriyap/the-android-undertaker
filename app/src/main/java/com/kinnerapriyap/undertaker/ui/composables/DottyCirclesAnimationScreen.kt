@@ -44,9 +44,11 @@ import kotlin.random.Random
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DottyCirclesAnimationScreen() {
+fun DottyCirclesAnimationScreen(
+    modifier: Modifier = Modifier
+) {
     Scaffold(
-        modifier = Modifier.navigationBarsPadding(),
+        modifier = modifier.navigationBarsPadding(),
         topBar = {
             TopAppBar(title = { Text(stringResource(R.string.dotty_circles_animation_title)) })
         }
@@ -77,7 +79,7 @@ fun DottyCirclesAnimation(
         MaterialTheme.colorScheme.tertiary,
         MaterialTheme.colorScheme.error,
     )
-    Column(modifier = modifier,) {
+    Column(modifier = modifier) {
         Spacer(modifier = Modifier.height(gridSpacing))
         repeat(gridSize) {
             Row {
@@ -103,6 +105,7 @@ fun DottyCircle(
     delayMillis: Int,
     circleSize: Dp,
     offsetSize: Dp,
+    modifier: Modifier = Modifier,
 ) {
     val infiniteTransition = rememberInfiniteTransition(label = "infinite")
     val pxToMove = with(LocalDensity.current) {
@@ -119,7 +122,7 @@ fun DottyCircle(
         ),
         typeConverter = Int.VectorConverter
     )
-    Box {
+    Box(modifier = modifier) {
         Box(
             modifier = Modifier
                 .offset { IntOffset(offset, offset) }

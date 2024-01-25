@@ -51,6 +51,9 @@ dependencies {
 
     implementation("com.roudikk.guia:guia:1.0.0-beta04")
 
+    lintChecks("com.slack.lint.compose:compose-lint-checks:1.2.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.7")
+
     testImplementation("junit:junit:4.13.2")
 
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

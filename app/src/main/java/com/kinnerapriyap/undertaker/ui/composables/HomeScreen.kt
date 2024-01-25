@@ -19,15 +19,17 @@ import androidx.compose.ui.unit.dp
 import com.kinnerapriyap.undertaker.Undertake
 import com.roudikk.guia.extensions.push
 import com.roudikk.guia.extensions.requireLocalNavigator
+import kotlinx.collections.immutable.ImmutableList
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    undertakes: List<Undertake>,
+    undertakes: ImmutableList<Undertake>,
+    modifier: Modifier = Modifier,
 ) {
     val navigator = requireLocalNavigator()
     Scaffold(
-        modifier = Modifier.navigationBarsPadding(),
+        modifier = modifier.navigationBarsPadding(),
         topBar = { TopAppBar(title = { Text("The Undertaker lives here.") }) }
     ) {
         LazyColumn(
