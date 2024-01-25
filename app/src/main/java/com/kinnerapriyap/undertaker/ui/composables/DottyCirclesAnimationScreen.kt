@@ -35,6 +35,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.kinnerapriyap.undertaker.R
@@ -62,29 +63,36 @@ fun DottyCirclesAnimationScreen() {
     }
 }
 
-private const val CIRCLE_SIZE = 24
-private const val OFFSET = 4
-private const val GRID_SIZE = 8
-private const val GRID_SPACING = 16
-
 @Composable
-fun DottyCirclesAnimation() {
+fun DottyCirclesAnimation(
+    modifier: Modifier = Modifier,
+    gridSize: Int = 8,
+    gridSpacing: Dp = 16.dp,
+    circleSize: Dp = 24.dp,
+    offsetSize: Dp = 4.dp,
+) {
     val colors = listOf(
         MaterialTheme.colorScheme.primary,
         MaterialTheme.colorScheme.secondary,
         MaterialTheme.colorScheme.tertiary,
         MaterialTheme.colorScheme.error,
     )
-    Column {
-        repeat(GRID_SIZE) {
+    Column(modifier = modifier,) {
+        Spacer(modifier = Modifier.height(gridSpacing))
+        repeat(gridSize) {
             Row {
-                Spacer(modifier = Modifier.width(GRID_SPACING.dp))
-                repeat(GRID_SIZE) {
-                    DottyCircle(colors.random(), Random.nextInt(0, 2000))
-                    Spacer(modifier = Modifier.width(GRID_SPACING.dp))
+                Spacer(modifier = Modifier.width(gridSpacing))
+                repeat(gridSize) {
+                    DottyCircle(
+                        fillColor = colors.random(),
+                        delayMillis = Random.nextInt(0, 2000),
+                        circleSize = circleSize,
+                        offsetSize = offsetSize,
+                    )
+                    Spacer(modifier = Modifier.width(gridSpacing))
                 }
             }
-            Spacer(modifier = Modifier.height(GRID_SPACING.dp))
+            Spacer(modifier = Modifier.height(gridSpacing))
         }
     }
 }
@@ -92,11 +100,13 @@ fun DottyCirclesAnimation() {
 @Composable
 fun DottyCircle(
     fillColor: Color,
-    delayMillis: Int
+    delayMillis: Int,
+    circleSize: Dp,
+    offsetSize: Dp,
 ) {
     val infiniteTransition = rememberInfiniteTransition(label = "infinite")
     val pxToMove = with(LocalDensity.current) {
-        OFFSET.dp.toPx().roundToInt()
+        offsetSize.toPx().roundToInt()
     }
     val offset by infiniteTransition.animateValue(
         initialValue = 0,
@@ -113,14 +123,14 @@ fun DottyCircle(
         Box(
             modifier = Modifier
                 .offset { IntOffset(offset, offset) }
-                .size(CIRCLE_SIZE.dp)
+                .size(circleSize)
                 .clip(CircleShape)
                 .background(fillColor)
         )
         Box(
             modifier = Modifier
                 .offset { IntOffset(-offset, -offset) }
-                .size(CIRCLE_SIZE.dp)
+                .size(circleSize)
                 .clip(CircleShape)
                 .background(MaterialTheme.colorScheme.surface)
                 .border(1.dp, MaterialTheme.colorScheme.onSurface, CircleShape)
