@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">The Undertaker</string>
+
+    <string name="dotty_circles_animation_title">Dotty Circles Animation</string>
 </resources>

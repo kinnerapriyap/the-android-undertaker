@@ -1,9 +1,9 @@
-package com.kinnerapriyap.undertaker
+package com.kinnerapriyap.undertaker.ui.composables
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
 @Composable
-fun HomeScreen() {
+fun DottyCirclesAnimationScreen() {
     Text("heehee")
 }
