@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -14,8 +15,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.kinnerapriyap.undertaker.R
 import com.kinnerapriyap.undertaker.Undertake
 import com.roudikk.guia.extensions.push
 import com.roudikk.guia.extensions.requireLocalNavigator
@@ -38,6 +41,7 @@ fun HomeScreen(
         ) {
             items(undertakes) { undertake ->
                 ListItem(
+                    modifier = Modifier.clickable { navigator.push(undertake.navigationKey) },
                     headlineContent = {
                         Text(
                             text = stringResource(undertake.title),
@@ -48,14 +52,18 @@ fun HomeScreen(
                         when (undertake) {
                             is Undertake.DottyCirclesAnimationUndertake ->
                                 DottyCirclesAnimation(
-                                    modifier = Modifier
-                                        .clickable { navigator.push(undertake.navigationKey) },
                                     gridSize = 3,
                                     gridSpacing = 8.dp,
                                     circleSize = 12.dp,
                                     offsetSize = 2.dp
                                 )
                         }
+                    },
+                    trailingContent = {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_arrow_right),
+                            contentDescription = null
+                        )
                     },
                     shadowElevation = 2.dp
                 )
