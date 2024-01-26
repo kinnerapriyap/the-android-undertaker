@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">The Undertaker</string>
 
+    <!-- Common -->
+    <string name="arrow_back_content_description">Navigate back</string>
+
     <string name="dotty_circles_animation_title">Dotty Circles Animation</string>
 </resources>
