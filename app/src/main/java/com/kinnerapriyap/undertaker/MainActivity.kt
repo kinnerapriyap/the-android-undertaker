@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.kinnerapriyap.undertaker.ui.composables.DottyCirclesAnimationScreen
 import com.kinnerapriyap.undertaker.ui.composables.HomeScreen
+import com.kinnerapriyap.undertaker.ui.composables.SlotMachineAnimationScreen
 import com.kinnerapriyap.undertaker.ui.theme.TheAndroidUndertakerTheme
 import com.roudikk.guia.containers.NavContainer
 import com.roudikk.guia.core.NavigatorConfigBuilder
@@ -26,4 +27,5 @@ class MainActivity : ComponentActivity() {
 private fun NavigatorConfigBuilder.handleNavigation() {
     screen<HomeKey> { HomeScreen(undertakes = undertakes.toImmutableList()) }
     screen<DottyCirclesAnimationKey> { DottyCirclesAnimationScreen() }
+    screen<SlotMachineAnimationKey> { SlotMachineAnimationScreen() }
 }

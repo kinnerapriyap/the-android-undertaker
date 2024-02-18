@@ -23,6 +23,7 @@ import com.kinnerapriyap.undertaker.Undertake
 import com.roudikk.guia.extensions.push
 import com.roudikk.guia.extensions.requireLocalNavigator
 import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -59,7 +60,13 @@ fun HomeScreen(
                                 )
 
                             is Undertake.SlotMachineAnimationUndertake ->
-                                SlotMachineAnimationScreen()
+                                OneSlotMachineAnimation(
+                                    options = (1..7).map { it.toString() }.toImmutableList(),
+                                    animationDuration = 10000L,
+                                    transitionDuration = 120L,
+                                    textStyle = MaterialTheme.typography.bodyLarge,
+                                    borderWidth = 2.dp
+                                )
                         }
                     },
                     trailingContent = {
