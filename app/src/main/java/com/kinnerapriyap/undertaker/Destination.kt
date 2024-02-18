@@ -8,3 +8,6 @@ data object HomeKey : NavigationKey
 
 @Parcelize
 data object DottyCirclesAnimationKey : NavigationKey
+
+@Parcelize
+data object SlotMachineAnimationKey : NavigationKey

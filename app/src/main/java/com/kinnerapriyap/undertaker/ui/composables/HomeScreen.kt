@@ -57,6 +57,9 @@ fun HomeScreen(
                                     circleSize = 12.dp,
                                     offsetSize = 2.dp
                                 )
+
+                            is Undertake.SlotMachineAnimationUndertake ->
+                                SlotMachineAnimationScreen()
                         }
                     },
                     trailingContent = {
