@@ -1,5 +1,6 @@
 package com.kinnerapriyap.undertaker.ui.composables
 
+import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.animation.core.tween
@@ -32,6 +33,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -41,6 +43,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -125,6 +128,13 @@ fun SlideToUnlock(
         derivedStateOf { state.progress(from = Anchor.Start, to = Anchor.End) }
     }
     val draggableSizePx = with(density) { ActionCircle.toPx() }
+
+    val context = LocalContext.current
+    LaunchedEffect(state.settledValue) {
+        if (state.settledValue == Anchor.End) {
+            Toast.makeText(context, "Reached End", Toast.LENGTH_SHORT).show()
+        }
+    }
     Track(
         modifier = modifier,
         anchoredDraggableState = state,
