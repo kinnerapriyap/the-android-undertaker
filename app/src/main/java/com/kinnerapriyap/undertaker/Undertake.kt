@@ -17,9 +17,15 @@ sealed interface Undertake {
         override val title: Int = R.string.slot_machine_animation_title,
         override val navigationKey: NavigationKey = SlotMachineAnimationKey
     ) : Undertake
+
+    data class SlideToUnlockUndertake(
+        override val title: Int = R.string.slide_to_unlock_title,
+        override val navigationKey: NavigationKey = SlideToUnlockKey
+    ) : Undertake
 }
 
 internal val undertakes = listOf(
     Undertake.DottyCirclesAnimationUndertake(),
-    Undertake.SlotMachineAnimationUndertake()
+    Undertake.SlotMachineAnimationUndertake(),
+    Undertake.SlideToUnlockUndertake(),
 )

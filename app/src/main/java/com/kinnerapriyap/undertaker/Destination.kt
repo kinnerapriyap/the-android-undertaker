@@ -11,3 +11,6 @@ data object DottyCirclesAnimationKey : NavigationKey
 
 @Parcelize
 data object SlotMachineAnimationKey : NavigationKey
+
+@Parcelize
+data object SlideToUnlockKey : NavigationKey
