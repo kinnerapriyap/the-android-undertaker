@@ -67,6 +67,8 @@ fun HomeScreen(
                                     textStyle = MaterialTheme.typography.bodyLarge,
                                     borderWidth = 2.dp
                                 )
+
+                            is Undertake.SlideToUnlockUndertake -> ActionCircle(isLoading = false)
                         }
                     },
                     trailingContent = {
