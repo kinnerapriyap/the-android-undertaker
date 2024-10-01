@@ -2,8 +2,10 @@ package com.kinnerapriyap.undertaker.ui.composables
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -42,7 +44,9 @@ fun HomeScreen(
         ) {
             items(undertakes) { undertake ->
                 ListItem(
-                    modifier = Modifier.clickable { navigator.push(undertake.navigationKey) },
+                    modifier = Modifier
+                        .clickable { navigator.push(undertake.navigationKey) }
+                        .height(72.dp),
                     headlineContent = {
                         Text(
                             text = stringResource(undertake.title),
@@ -54,21 +58,24 @@ fun HomeScreen(
                             is Undertake.DottyCirclesAnimationUndertake ->
                                 DottyCirclesAnimation(
                                     gridSize = 3,
-                                    gridSpacing = 8.dp,
-                                    circleSize = 12.dp,
-                                    offsetSize = 2.dp
+                                    gridSpacing = 4.dp,
+                                    circleSize = 10.dp,
+                                    offsetSize = 1.dp
                                 )
 
                             is Undertake.SlotMachineAnimationUndertake ->
                                 OneSlotMachineAnimation(
                                     options = (1..7).map { it.toString() }.toImmutableList(),
-                                    animationDuration = 10000L,
+                                    animationDuration = Long.MAX_VALUE,
                                     transitionDuration = 120L,
                                     textStyle = MaterialTheme.typography.bodyLarge,
                                     borderWidth = 2.dp
                                 )
 
-                            is Undertake.SlideToUnlockUndertake -> ActionCircle(isLoading = false)
+                            is Undertake.SlideToUnlockUndertake -> ActionCircle(
+                                modifier = Modifier.size(48.dp),
+                                isLoading = false
+                            )
                         }
                     },
                     trailingContent = {
