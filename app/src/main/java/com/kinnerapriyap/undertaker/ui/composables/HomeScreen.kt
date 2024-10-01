@@ -1,8 +1,8 @@
 package com.kinnerapriyap.undertaker.ui.composables
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -16,6 +16,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -44,9 +45,7 @@ fun HomeScreen(
         ) {
             items(undertakes) { undertake ->
                 ListItem(
-                    modifier = Modifier
-                        .clickable { navigator.push(undertake.navigationKey) }
-                        .height(72.dp),
+                    modifier = Modifier.clickable { navigator.push(undertake.navigationKey) },
                     headlineContent = {
                         Text(
                             text = stringResource(undertake.title),
@@ -54,28 +53,35 @@ fun HomeScreen(
                         )
                     },
                     leadingContent = {
-                        when (undertake) {
-                            is Undertake.DottyCirclesAnimation ->
-                                DottyCirclesAnimation(
-                                    gridSize = 3,
-                                    gridSpacing = 4.dp,
-                                    circleSize = 10.dp,
-                                    offsetSize = 1.dp
+                        Box(modifier = Modifier.size(60.dp), contentAlignment = Alignment.Center) {
+                            when (undertake) {
+                                is Undertake.DottyCirclesAnimation ->
+                                    DottyCirclesAnimation(
+                                        gridSize = 3,
+                                        gridSpacing = 4.dp,
+                                        circleSize = 10.dp,
+                                        offsetSize = 1.dp
+                                    )
+
+                                is Undertake.SlotMachineAnimation ->
+                                    OneSlotMachineAnimation(
+                                        options = (1..7).map { it.toString() }.toImmutableList(),
+                                        animationDuration = Long.MAX_VALUE,
+                                        transitionDuration = 120L,
+                                        textStyle = MaterialTheme.typography.bodyLarge,
+                                        borderWidth = 2.dp
+                                    )
+
+                                is Undertake.SlideToUnlock -> ActionCircle(
+                                    modifier = Modifier.size(48.dp),
+                                    isLoading = false
                                 )
 
-                            is Undertake.SlotMachineAnimation ->
-                                OneSlotMachineAnimation(
-                                    options = (1..7).map { it.toString() }.toImmutableList(),
-                                    animationDuration = Long.MAX_VALUE,
-                                    transitionDuration = 120L,
-                                    textStyle = MaterialTheme.typography.bodyLarge,
-                                    borderWidth = 2.dp
+                                is Undertake.AlarmsWithStep -> Icon(
+                                    painterResource(android.R.drawable.ic_dialog_alert),
+                                    contentDescription = null,
                                 )
-
-                            is Undertake.SlideToUnlock -> ActionCircle(
-                                modifier = Modifier.size(48.dp),
-                                isLoading = false
-                            )
+                            }
                         }
                     },
                     trailingContent = {

@@ -3,6 +3,7 @@ package com.kinnerapriyap.undertaker
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import com.kinnerapriyap.undertaker.ui.composables.AlarmsWithStepScreen
 import com.kinnerapriyap.undertaker.ui.composables.DottyCirclesAnimationScreen
 import com.kinnerapriyap.undertaker.ui.composables.HomeScreen
 import com.kinnerapriyap.undertaker.ui.composables.SlideToUnlockScreen
@@ -30,4 +31,5 @@ private fun NavigatorConfigBuilder.handleNavigation() {
     screen<DottyCirclesAnimationKey> { DottyCirclesAnimationScreen() }
     screen<SlotMachineAnimationKey> { SlotMachineAnimationScreen() }
     screen<SlideToUnlockKey> { SlideToUnlockScreen() }
+    screen<AlarmsWithStepKey> { AlarmsWithStepScreen() }
 }
