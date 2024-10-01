@@ -55,7 +55,7 @@ fun HomeScreen(
                     },
                     leadingContent = {
                         when (undertake) {
-                            is Undertake.DottyCirclesAnimationUndertake ->
+                            is Undertake.DottyCirclesAnimation ->
                                 DottyCirclesAnimation(
                                     gridSize = 3,
                                     gridSpacing = 4.dp,
@@ -63,7 +63,7 @@ fun HomeScreen(
                                     offsetSize = 1.dp
                                 )
 
-                            is Undertake.SlotMachineAnimationUndertake ->
+                            is Undertake.SlotMachineAnimation ->
                                 OneSlotMachineAnimation(
                                     options = (1..7).map { it.toString() }.toImmutableList(),
                                     animationDuration = Long.MAX_VALUE,
@@ -72,7 +72,7 @@ fun HomeScreen(
                                     borderWidth = 2.dp
                                 )
 
-                            is Undertake.SlideToUnlockUndertake -> ActionCircle(
+                            is Undertake.SlideToUnlock -> ActionCircle(
                                 modifier = Modifier.size(48.dp),
                                 isLoading = false
                             )
