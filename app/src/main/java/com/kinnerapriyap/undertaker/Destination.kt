@@ -14,6 +14,3 @@ data object SlotMachineAnimationKey : NavigationKey
 
 @Parcelize
 data object SlideToUnlockKey : NavigationKey
-
-@Parcelize
-data object AlarmsWithStepKey : NavigationKey
